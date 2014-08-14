@@ -1,6 +1,9 @@
 require 'omniauth-oauth2'
 require 'figaro'
 
+Figaro.load
+puts ENV["auth_url"]
+
 module OmniAuth
   module Strategies
     class Gwc < OmniAuth::Strategies::OAuth2
