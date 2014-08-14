@@ -1,8 +1,11 @@
 require 'omniauth-oauth2'
+require 'figaro'
 
 module OmniAuth
   module Strategies
     class Gwc < OmniAuth::Strategies::OAuth2
+
+      CUSTOM_PROVIDER_URL = Figaro.env.auth_url
 
       option :client_options, {
         :site =>  CUSTOM_PROVIDER_URL,
