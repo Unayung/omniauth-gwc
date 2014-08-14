@@ -22,9 +22,16 @@ $ c.save
 
 1. Add config/initializers/omniauth.rb file and put code below in there:
 ```
+module OmniAuth
+  module Strategies
+    class Gwc < OmniAuth::Strategies::OAuth2
+      PROVIDER_URL = "http://my-awesome-provider.dev"
+    end
+  end
+end
+
 APP_ID = 'YOUR_REGISTERED_APP_ID' #ex 1
 APP_SECRET = 'YOUR_REGISTERED_APP_SECRET' # ex 123qweasdzxc
-CUSTOM_PROVIDER_URL = 'YOUR_USER_MANAGER_APP_URL' # ex http://user-manager.dev
 
 Rails.application.config.middleware.use OmniAuth::Builder do
   provider :gwc, APP_ID, APP_SECRET

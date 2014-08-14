@@ -1,19 +1,15 @@
 require 'omniauth-oauth2'
-require 'figaro'
-
-Figaro.load
-puts ENV["auth_url"]
 
 module OmniAuth
   module Strategies
     class Gwc < OmniAuth::Strategies::OAuth2
 
-      CUSTOM_PROVIDER_URL = Figaro.env.auth_url
+      PROVIDER_URL = "http://custom-provider-url"
 
       option :client_options, {
-        :site =>  CUSTOM_PROVIDER_URL,
-        :authorize_url => "#{CUSTOM_PROVIDER_URL}/auth/gwc/authorize",
-        :access_token_url => "#{CUSTOM_PROVIDER_URL}/auth/gwc/access_token"
+        :site =>  PROVIDER_URL,
+        :authorize_url => "#{PROVIDER_URL}/auth/gwc/authorize",
+        :access_token_url => "#{PROVIDER_URL}/auth/gwc/access_token"
       }
 
       uid { raw_info['id'] }
