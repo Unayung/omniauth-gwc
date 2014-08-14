@@ -4,14 +4,6 @@ module OmniAuth
   module Strategies
     class Gwc < OmniAuth::Strategies::OAuth2
 
-      PROVIDER_URL ||= "http://custom-provider-url"
-
-      option :client_options, {
-        :site =>  PROVIDER_URL,
-        :authorize_url => "#{PROVIDER_URL}/auth/gwc/authorize",
-        :access_token_url => "#{PROVIDER_URL}/auth/gwc/access_token"
-      }
-
       uid { raw_info['id'] }
 
       info do
