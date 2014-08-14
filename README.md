@@ -22,20 +22,18 @@ $ c.save
 
 1. Add config/initializers/omniauth.rb file and put code below in there:
 ```
-module OmniAuth
-  module Strategies
-    class Gwc < OmniAuth::Strategies::OAuth2
-      PROVIDER_URL = "http://my-awesome-provider.dev"
-    end
-  end
-end
 
 APP_ID = 'YOUR_REGISTERED_APP_ID' #ex 1
 APP_SECRET = 'YOUR_REGISTERED_APP_SECRET' # ex 123qweasdzxc
 
 Rails.application.config.middleware.use OmniAuth::Builder do
-  provider :gwc, APP_ID, APP_SECRET
+  provider :gwc, APP_ID, APP_SECRET, {:client_options => {
+    :site => "http://user-manager.dev",
+    :authorize_url => "http://user-manager.dev/auth/gwc/authorize",
+    :access_token_url => "http://user-manager.dev/auth/gwc/access_token"
+    }}
 end
 ```
 
 2. Restart application and have fun
+3. You can see example app on git@git.codegreenit.com:client-app-example
