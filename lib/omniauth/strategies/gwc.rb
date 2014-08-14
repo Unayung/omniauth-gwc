@@ -4,7 +4,7 @@ module OmniAuth
   module Strategies
     class Gwc < OmniAuth::Strategies::OAuth2
 
-      PROVIDER_URL = "http://custom-provider-url"
+      PROVIDER_URL ||= "http://custom-provider-url"
 
       option :client_options, {
         :site =>  PROVIDER_URL,
